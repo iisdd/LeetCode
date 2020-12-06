@@ -32,15 +32,8 @@ class Solution:
             if s[r] in dct:
                 if dct[s[r]] >= l:      # 被夹在中间就移动左指针
                     l = dct[s[r]]+1
-                dct[s[r]] = r
-                r += 1
-            else:
-                dct[s[r]] = r
-                r += 1
-            res = max(res, r-l)
-        return res                      # 可能第一种情况r>n结束循环了
+            dct[s[r]] = r
+            r += 1
+            res = max(res, r-l)         # 可能第一种情况r>n结束循环了
+        return res        
 
-
-
-
-        
