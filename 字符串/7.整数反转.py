@@ -20,11 +20,6 @@
 '''
 # 用时35.7%
 class Solution:
-    def judge(x):
-        if x > 2**31-1 or x < -2**31:
-            return True
-        return False
-
     def reverse(self, x: int) -> int:
         if x > 2**31-1 or x < -2**31:
             return 0                #  特殊情况溢出
