@@ -18,7 +18,8 @@
 输入：(6 -> 1 -> 7) + (2 -> 9 -> 5)，即617 + 295
 输出：9 -> 1 -> 2，即912
 '''
-# 用时91.3%,做了一下午,我吐了,链表一定要搞pre和cur指针,不然搞不成器
+# 用时96.2%,做了一下午,我吐了,链表一定要搞pre和cur指针,不然搞不成器
+
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -47,35 +48,32 @@ class Solution:
             l2 = l2.next
         # 阶段2:多出来的部分
         if l1:                                          # l1长
-            while l1.next and carry:
+            while l1 and carry:
                 num1 = l1.val
                 l1.val = (num1 + carry) % 10
                 carry = (num1 + carry) // 10
+                pre1 = l1
                 l1 = l1.next
-            if not l1.next:
-                num1 = l1.val
-                l1.val = (num1 + carry) % 10
-                carry = (num1 + carry) // 10
+            if not l1:                                  # l1走到尽头,另一种情况是没有进位了
                 if carry:                               # 阶段3:进位的尾巴
-                    l1.next = ListNode(1)
+                    pre1.next = ListNode(1)
             return res1
         elif l2:                                        # l2长
-            while l2.next and carry:
+            while l2 and carry:
                 num2 = l2.val
                 l2.val = (num2 + carry) % 10
                 carry = (num2 + carry) // 10
+                pre2 = l2
                 l2 = l2.next
-            if not l2.next:
-                num2 = l2.val
-                l2.val = (num2 + carry) % 10
-                carry = (num2 + carry) // 10
+            if not l2:
                 if carry:                               # 阶段3:进位的尾巴
-                    l2.next = ListNode(1)
+                    pre2.next = ListNode(1)
             return res2
         else:                                           # l1,l2一样长
             if carry:                                   # 阶段3:进位的尾巴
                 pre1.next = ListNode(1)
             return res1
+
 
 
 
