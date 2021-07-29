@@ -39,7 +39,7 @@ class CQueue:
 # param_2 = obj.deleteHead()
 
 
-# 双栈,75.7%
+# 双栈,95.3%
 class CQueue:
     def __init__(self):
         self.stack_in = []
@@ -51,10 +51,10 @@ class CQueue:
     def deleteHead(self) -> int:
         if len(self.stack_out) > 0:         # stack_out里还有元素
             return self.stack_out.pop(0)
+        if len(self.stack_in) == 0:
+            return -1
         for i in range(len(self.stack_in)): # stack_out里没元素了,把stack_in的倒过去
             self.stack_out.append(self.stack_in.pop(0))
-        if len(self.stack_out) == 0:
-            return -1
         return self.stack_out.pop(0)
 
 # Your CQueue object will be instantiated and called as such:
