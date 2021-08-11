@@ -9,36 +9,46 @@
 
 0 <= 链表长度 <= 1000
 '''
-# 用时77.2
+# 92.5%
 
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
-
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        # 边界条件
-        if not l1:
-            return l2
-        if not l2:
-            return l1
-        cur = l1 if l1.val < l2.val else l2
-        res = ListNode(None)
-        res.next = cur
-        while l1 and l2:
-            if l1.val < l2.val:
-                next_node = l1.next
-                cur.next = l1
-                l1 = next_node
+        res = ListNode(-1)
+        head = res
+        pos1 = l1
+        pos2 = l2
+        while pos1 and pos2:
+            if pos1.val <= pos2.val:
+                res.next = pos1
+                pos1 = pos1.next
             else:
-                next_node = l2.next
-                cur.next = l2
-                l2 = next_node
-            cur = cur.next          # 推进
-        # 结尾
-        cur.next = l1 if l1 else l2
-        return res.next
+                res.next = pos2
+                pos2 = pos2.next
+            res = res.next
+        if not pos1: res.next = pos2
+        else: res.next = pos1
+        return head.next
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
