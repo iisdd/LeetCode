@@ -53,3 +53,55 @@ class Solution:
                 return loop(i+1, r)
             return arr[:i]
         return loop(0, len(arr)-1)
+
+
+
+
+class Solution:
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        if k == len(arr): return arr
+        def findmid(l, r):
+            tmp = arr[l]
+            while l < r:
+                while l < r and arr[r] >= tmp:
+                    r -= 1
+                arr[l] = arr[r]
+                while l < r and arr[l] <= tmp:
+                    l += 1
+                arr[r] = arr[l]
+            arr[l] = tmp
+            return l
+
+        l, r = 0, len(arr)-1
+        mid = findmid(l, r)
+        while mid != k:
+            if mid > k:
+                r = mid-1
+                mid = findmid(l, r)
+            elif mid < k:
+                l = mid+1
+                mid = findmid(l, r)
+        return arr[:k]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
